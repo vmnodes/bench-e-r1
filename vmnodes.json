@@ -3,5 +3,6 @@
   "roles": [
     { "name": "roster.viewer", "description": "Can see each stylist's booking counts and today's bookings." }
   ],
-  "database": false
+  "database": false,
+  "publishes": ["probe/v1"]
 }
