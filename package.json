@@ -1,0 +1,17 @@
+{
+  "name": "roster",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only stylist roster built from the bookings that bench-bookings shares.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node dev/run-local.js",
+    "test": "node test/smoke.js"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "@vmnodes/identity": "file:vendor/vmnodes-identity-0.1.0.tgz",
+    "jose": "^5.9.0"
+  }
+}
