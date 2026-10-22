@@ -102,12 +102,6 @@ async function handle(req, res) {
   const user = await identity.currentUser(req.headers);
   if (req.method !== "GET") return send(res, 405, { error: "this app is read-only" });
   if (url.pathname === "/api/me") return send(res, 200, user);
-  if (url.pathname === "/api/probe") { // TEMPORARY: what can this app's token see?
-    identity.requireRole(user, VIEWER_ROLE);
-    if (!API_URL || !API_TOKEN) return send(res, 200, { configured: false });
-    const r = await fetch(`${API_URL}/v1/data/entities`, { headers: { authorization: `Bearer ${API_TOKEN}` }, signal: AbortSignal.timeout(15000) });
-    return send(res, 200, { configured: true, status: r.status, body: await r.text() });
-  }
   if (url.pathname === "/" || url.pathname === "/api/roster") {
     identity.requireRole(user, VIEWER_ROLE); // checked on the SERVER
     const data = await loadRoster();
